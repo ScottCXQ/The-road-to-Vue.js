@@ -1,1 +1,31 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for='book in books'>
+        {{ book.name }}
+      </li>
+    </ul>
+  </div>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      data: {
+        books: [
+          { id: 1, name: '《Vue.js》' },
+          { id: 2, name: '《React.js》' },
+          { id: 3, name: '《Angular.js》' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
