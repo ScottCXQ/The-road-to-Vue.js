@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 这里的管道符“|”表示过滤器，意思是过滤器函数总接受表达式的值作为第一个参数 -->
+    {{ date | formatDate }}
+  </div>
+  <script>
+    //在月份、日期、小时等小于10时前面补0
+    var padDate=function(value) {
+      return value < 10 ? ('0'+value) : value;
+    };
 
+    const app=new Vue({
+      el: '#app',
+      data: {
+        date: new Date()
+      },
+      filters: {
+        formatDate: function(value) {   //这里的value就是需要过滤的数据
+          var date=new Date(value);
+          var year=date.getFullYear();
+          var month=padDate(date.getMonth()+1);
+          var day=padDate(date.getDate());
+          var hours=padDate(date.getHours());
+          var minutes=padDate(date.getMinutes());
+          var seconds=padDate(date.getSeconds());
+          // 将整理好的数据返回出去
+          return year+'-'+month+'-'+day+' '+hours+':'+minutes+':'+seconds;
+        }
+      },
+      mounted: function() {
+        var _this=this;
+        this.timer=setInterval(function() {
+          _this.date=new Date();
+        }, 1000);
+      },
+      beforeDestroy: function() {
+        if (this.timer) {
+          clearInterval(this.timer);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
