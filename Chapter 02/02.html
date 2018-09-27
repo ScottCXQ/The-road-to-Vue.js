@@ -15,12 +15,12 @@
     const app=new Vue({
       el: '#app',
       data: {
-        date: new Date().toLocaleTimeString()
+        date: new Date()
       },
       mounted: function() {
         var _this=this;   //声明一个变量指向Vue实例this，保证作用域一致
         this.timer=setInterval(function() {
-          _this.date=new Date().toLocaleTimeString();   //修改数据date
+          _this.date=new Date();   //修改数据date
         }, 1000);
       },
       beforeDestroy: function() {
