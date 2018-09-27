@@ -1,1 +1,58 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    总价: {{ prices }}
+  </div>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      data: {
+        package1: [
+          {
+            name: 'iPhone XS Max',
+            price: 9989,
+            count: 2
+          },
+          {
+            name: 'iPad Pro',
+            price: 5589,
+            count: 3
+          }
+        ],
+        package2: [
+          {
+            name: 'apple',
+            price: 4,
+            count: 10
+          },
+          {
+            name: 'banana',
+            price: 2.5,
+            count: 8
+          }
+        ]
+      },
+      computed: {
+        prices: function() {
+          var prices=0;
+          for (var i=0;i<this.package1.length;i++) {
+            prices+=this.package1[i].price*this.package1[i].count;
+          }
+          for (var i=0;i<this.package2.length;i++) {
+            prices+=this.package2[i].price*this.package2[i].count;
+          }
+          return prices;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
