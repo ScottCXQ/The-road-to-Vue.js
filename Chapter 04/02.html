@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="classes"></div>
+  </div>
+  <script>
+    /*
+     当:class的表达式过长或逻辑复杂时，还可以绑定一个计算属性，
+     这是一种很友好和常见的方式，一般当条件多于两个时，
+     都可以使用data或computed
+    */
+    const app=new Vue({
+      el: '#app',
+      data: {
+        isActive: true,
+        error: null
+      },
+      computed: {
+        classes: function() {
+          return {
+            active: this.isActive && !this.error,
+            'text-fail': this.error && this.error.type === 'fail'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
