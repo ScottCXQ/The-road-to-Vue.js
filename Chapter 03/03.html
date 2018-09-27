@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app1"></div>
+  <div id="app2">
+    {{ reversedText }}
+  </div>
+  <script>
+    /*
+      计算属性的小技巧：
+      1.计算属性可以依赖其他的计算属性
+      2.计算属性不仅可以依赖当前Vue实例的数据，还可以依赖其他实例的数据
+    */
+    const app1=new Vue({
+      el: '#app1',
+      data: {
+        text: '123,456,789'
+      }
+    });
+
+    const app2=new Vue({
+      el: '#app2',
+      computed: {
+        reversedText: function() {
+          // 这里依赖的是实例app1的数据text
+          return app1.text.split(',').reverse().join(',');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
