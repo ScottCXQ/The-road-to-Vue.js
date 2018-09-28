@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p v-if='status === 1'>1</p>
+    <p v-else-if='status === 2'>2</p>
+    <p v-else='status === 3'>3</p>
+  </div>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      data: {
+        status: 3
+      }
+    });
+  </script>
+</body>
+</html>
