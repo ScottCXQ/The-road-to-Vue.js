@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <template v-if='type === "name"'>
+      <label>用户名：</label>
+      <input type="text" placeholder="输入用户名" />
+    </template>
+    <template v-else>
+      <label>邮箱：</label>
+      <input type="email" placeholder="输入邮箱" />
+    </template>
+    <button @click='handleToggleClick'>ToggleBtn</button>
+  </div>
+  <script>
+    /*
+      在本实例中，会尽可能的复用已有的元素而非重新渲染
+      但是存在一个问题，就是键入内容后，虽然DOM变了，但是之前在
+      输入框的内容并没有改变，知识替换了placeholder的内容，
+      说明input元素被复用了。
+      如果你不希望这样，可以使用Vue.js提供的key属性，
+      它可以让你决定是否要复用元素，key值必须唯一
+    */
+    const app=new Vue({
+      el: '#app',
+      data: {
+        type: 'name'
+      },
+      methods: {
+        handleToggleClick: function() {
+          this.type=this.type === 'name' ? 'mail' : 'name';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
