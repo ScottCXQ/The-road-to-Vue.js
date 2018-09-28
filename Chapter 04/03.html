@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue 示例</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="classes"></div>
+  </div>
+  <script>
+    /*
+     绑定class的方式有对象语法、数组语法，还可以使用data、computed和methods三种方法
+     下面以计算属性为例
+     使用计算属性给元素动态设置类名，经常在写复用组件时用到
+    */
+    const app=new Vue({
+      el: '#app',
+      data: {
+        size: 'large',
+        disabled: true
+      },
+      computed: {
+        classes: function() {
+          return [
+            'btn',
+            {
+              ['btn-'+this.size]: this.size !== '',
+              ['btn-disabled']: this.disabled
+            }
+          ];
+        }
+      }
+    });
+  </script>
+</body>
+</html>
