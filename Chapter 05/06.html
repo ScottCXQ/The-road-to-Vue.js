@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ counter }}
+    <button @click='handleAdd()'>+ 1</button>
+    <button @click='handleAdd(10)'>+ 10</button>
+  </div>
+  <script>
+    /*
+    这里@click后面的函数有参数，如果将后面的函数的括号去掉，默认会将原生事件对象event传入
+    如果后面的函数不需要传入参数的话，可以为了简便不写括号；
+    这种在HTML元素上监听事件的设计看似将DOM和JavaScript紧耦合，违背分离的原理，
+    实则刚好相反，因为通过HTML就可以知道调用的是哪个方法，将逻辑和DOM解耦，便于维护。
+    最重要的是，当ViewModel销毁时，所有的事件处理器都会自动删除，无需自己清理。
+    */
+    const app=new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        handleAdd: function(count) {
+          count = count || 1;
+          this.counter += count;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
