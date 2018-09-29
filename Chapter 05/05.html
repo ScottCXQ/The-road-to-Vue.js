@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ count }}
+    <button @click='count++'>+ 1</button>
+  </div>
+  <script>
+    /*
+    主要讲了方法和事件
+    引入Vue事件处理的v-on
+    @click等同于v-on:click，是一个语法糖
+    */
+    const app=new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      }
+    });
+  </script>
+</body>
+</html>
