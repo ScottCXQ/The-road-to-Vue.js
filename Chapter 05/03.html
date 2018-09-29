@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  /*
+    v-for指令的使用情况：
+    当需要将一个数组遍历或枚举一个对象循环显示时
+  */
+  <div id="app">
+    <ul>
+      <li v-for='(book, index) in books'>{{ index }} - {{ book.name }}</li>
+    </ul>
+  </div>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      data: {
+        books: [
+          { name: 'vue.js' },
+          { name: 'react.js' },
+          { name: 'angular.js' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
