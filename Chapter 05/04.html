@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+  /*
+    除了数组以外，对象的属性也是可以遍历的
+    遍历属性时，有两个可选参数，分别是键名和索引
+  */
+  <div id="app">
+    <span v-for='(value, key, index) in user'>{{ index }} - {{ key }} : {{ value }}</span>
+  </div>
+  <script>
+    const app=new Vue({
+      el: '#app',
+      data: {
+        user: {
+          name: 'scott',
+          age: 18,
+          gender: 'male'
+        }
+      }
+    });
+  </script>
+</body>
+</html>
