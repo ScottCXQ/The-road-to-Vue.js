@@ -1,1 +1,35 @@
+<!-- 单选按钮在单独使用时，不需要使用 v-model，直接使用 v-bind 绑定一个布尔类型的值；
+  如果是组合使用来实现互斥选择的效果，就需要 v-model 配合 value 来使用。 -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <input type="radio" v-model='picked' value="html" id="html" />
+    <label for="html">HTML</label>
+    <br>
+    <input type="radio" v-model='picked' value="js" id="js" />
+    <label for="js">JavaScript</label>
+    <br>
+    <input type="radio" v-model='picked' value="css" id="css" />
+    <label for="css">CSS</label>
+    <br>
+    <p>选择的项是：{{ picked }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        picked: 'js'
+      }
+    });
+  </script>
+</body>
+</html>
