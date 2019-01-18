@@ -1,0 +1,57 @@
+1. 第一种使用 v-model 指令如果输入的是中文的话，不会实时更新
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model='message' placeholder="请输入" />
+    <p>输入的内容是：{{ message }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      }
+    });
+  </script>
+</body>
+</html>
+
+2. 如果想要做到实时更新，可以使用 @input 代替 v-model 指令
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <input type="text" @input='handleInput' placeholder="请输入" />
+    <br><br>
+    <p>输入的内容是：{{ message }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      methods: {
+        handleInput: function(e) {
+          this.message = e.target.value;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
