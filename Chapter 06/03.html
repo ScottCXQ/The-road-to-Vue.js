@@ -1,1 +1,35 @@
+<!-- 复选框也分为单独使用和组合使用。不同的是，单独使用也是用 v-model 来绑定一个布尔值； 
+组合使用时，也是 v-model 与 value 一起，这一过程是双向的。-->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <input type="checkbox" v-model='checked' value="html" id="html" />
+    <label for="html">HTML</label>
+    <br>
+    <input type="checkbox" v-model='checked' value="js" id="js" />
+    <label for="js">JavaScript</label>
+    <br>
+    <input type="checkbox" v-model='checked' value="css" id="css" />
+    <label for="css">CSS</label>
+    <br>
+    <p>选择的项：{{ checked }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        checked: ['html', 'css']
+      }
+    });
+  </script>
+</body>
+</html>
