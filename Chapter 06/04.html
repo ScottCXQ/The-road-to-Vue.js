@@ -1,0 +1,31 @@
+选择列表同样分为单选和多选两种方式。option是备选项，如果含有value属性，v-model则会优先匹配value的值；
+如果没有，就会直接匹配<option>的text。
+且给<select>添加属性multiple就可以多选了，此时v-model绑定的是一个数组。
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <select v-model='selected' multiple>
+      <option>html</option>
+      <option value="js">JavaScript</option>
+      <option>css</option>
+    </select>
+    <p>选择的项是：{{ selected }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        selected: ['html', 'js']
+      }
+    });
+  </script>
+</body>
+</html>
