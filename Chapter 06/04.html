@@ -29,3 +29,47 @@
   </script>
 </body>
 </html>
+
+<!-- 但是在实际业务中，<option>经常用v-for动态输出，value和text也是用v-bind来动态输出的 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <select v-model='selected'>
+      <option 
+        v-for='option in options'
+        :value='option.value'>{{ option.text }}</option>
+    </select>
+    <p>选择的项是: {{ selected }}</p>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        selected: 'html',
+        options: [
+          {
+            text: 'HTML',
+            value: 'html'
+          },
+          {
+            text: 'JavaScript',
+            value: 'js'
+          },
+          {
+            text: 'CSS',
+            value: 'css'
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
