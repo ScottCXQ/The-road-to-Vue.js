@@ -1,5 +1,6 @@
-组件注册分为全局注册和局部注册两种方式。
+<!-- 组件注册分为全局注册和局部注册两种方式。且组件的 template 选项的 DOM 结构必须被一个元素包含。 -->
 
+<!-- 1. 全局注册 Vue.component(...) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,35 @@
 
     const app = new Vue({
       el: '#app'
+    });
+  </script>
+</body>
+</html>
+
+<!-- 2. 局部注册 Vue 实例中，使用 components 选项可以局部注册组件 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <my-component></my-component>
+  </div>
+  <script>
+    const Child = {
+      template: '<div>这里是组件的内容</div>'
+    };
+
+    const app = new Vue({
+      el: '#app',
+      components: {
+        'my-component': Child
+      }
     });
   </script>
 </body>
