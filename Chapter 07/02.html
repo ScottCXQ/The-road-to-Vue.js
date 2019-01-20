@@ -1,3 +1,5 @@
+<!-- JavaScript 对象是引用关系，所以如果 return 出的对象引用了外部的一个对象，那么这个对象就是共享的，任何一方修改都会改变。 -->
+<!-- 此时点击任意一个<button>，三个的数字都会加1，那是因为组件的 data 引用的是外部的对象 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +24,39 @@
       template: '<button @click="counter++">{{ counter }}</button>',
       data: function() {
         return data;
+      }
+    });
+
+    const app = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+</html>
+
+<!-- 此时点击3个按钮就互不影响了，完全达到复用的目的，因为组件返回一个新的 data 对象来独立 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+  </div>
+  <script>
+    Vue.component('my-component', {
+      template: '<button @click="counter++">{{ counter }}</button>',
+      data: function() {
+        return {
+          counter: 0
+        };
       }
     });
 
