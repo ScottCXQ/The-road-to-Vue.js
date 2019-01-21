@@ -23,7 +23,7 @@
         }
       }
     });
-    
+   
     const app = new Vue({
       el: '#app',
       data: {
@@ -33,6 +33,51 @@
         'on-message': function(msg) {
           this.message = msg;
         }
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!-- 注意：该示例适用于 Vue.js 1.x 和 Vue.js 2.x -->
+<!-- 使用一个空的 Vue 实例作为中央事件总线（bus） -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <component-a></component-a>
+  </div>
+  <script>
+    const bus = new Vue();
+
+    Vue.component('component-a', {
+      template: '<button @click="handleEvent">传递事件</button>',
+      methods: {
+        handleEvent: function() {
+          bus.$emit('on-message', '来自组件 component-a 的内容');
+        }
+      }
+    });
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      mounted: function() {
+        let _this = this;
+        // 在实例初始化时，监听来自 bus 实例的事件
+        bus.$on('on-message', function(msg) {
+          _this.message = msg;
+        });
       }
     });
   </script>
