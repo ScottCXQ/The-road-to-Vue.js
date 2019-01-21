@@ -1,0 +1,39 @@
+非父子组件之间的通信
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <my-component></my-component>
+  </div>
+  <script>
+    Vue.component('my-component', {
+      template: '<button @click="handleDispatch">派发事件</button>',
+      methods: {
+        handleDispatch: function() {
+          this.$dispatch('on-message', '来自内部组件的数据');
+        }
+      }
+    });
+    
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      events: {
+        'on-message': function(msg) {
+          this.message = msg;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
