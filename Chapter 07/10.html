@@ -1,0 +1,43 @@
+Vue.js 提供了一种特殊的元素 <component> 用来动态地挂在不同的组件，使用 is 特性来选择要挂载地组件
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <component :is="currentView"></component>
+    <button @click='handleChangeView("A")'>change to A</button>
+    <button @click='handleChangeView("B")'>change to B</button>
+    <button @click='handleChangeView("C")'>change to C</button>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        comA: {
+          template: '<div>Component A</div>'
+        },
+        comB: {
+          template: '<div>Component B</div>'
+        },
+        ComC: {
+          template: '<div>Component C</div>'
+        }
+      },
+      data: {
+        currentView: 'comA'
+      },
+      methods: {
+        handleChangeView: function(component) {
+          this.currentView = 'com' + component;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
