@@ -1,4 +1,4 @@
-验证输入的是不是数字
+// 验证输入的是不是数字
 function isValueNumber(value) {
   return (/(^-?[0-9]+\.{1}\d+$) | (^-?[1-9][0-9]*$) | (^-?0{1}$)/).test(value + '');
 }
@@ -81,6 +81,7 @@ Vue.component('input-number', {
       }
     }
   },
+//   在第一次初始化时，也对 value 进行过滤
   mounted: function() {
     this.updateValue(this.value);
   }
