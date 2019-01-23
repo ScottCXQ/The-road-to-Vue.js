@@ -81,7 +81,7 @@ Vue.component('input-number', {
       }
     }
   },
-//   在第一次初始化时，也对 value 进行过滤
+  // 在第一次初始化时，也对 value 进行过滤
   mounted: function() {
     this.updateValue(this.value);
   }
