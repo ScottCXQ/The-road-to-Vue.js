@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.5.22/dist/vue.min.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <div v-test:msg.a.b='message'></div>
+  </div>
+  <script>
+    Vue.directive('test', {
+      bind: function(el, binding, vnode) {
+        let keys = [];
+        for (let i in vnode) {
+          keys.push(i);
+        }
+        el.innerHTML = 
+          'name: ' + binding.name + '<br/>' + 
+          'value: ' + binding.value + '<br/>' + 
+          'expression: ' + binding.expression + '<br/>' + 
+          'argument: ' + binding.arg + '<br/>' + 
+          'modifiers: ' + JSON.stringify(binding.modifiers) + '<br/>' + 
+          'vnode keys: ' + keys.join(', ')
+      }
+    });
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'some text'
+      }
+    });
+  </script>
+</body>
+</html>
+
+结果是：
+name: test
+value: some text
+expression: message
+argument: msg
+modifiers: {"a":true,"b":true}
+vnode keys: tag, data, children, text, elm, ns, context, fnContext, fnOptions, fnScopeId, key, componentOptions, componentInstance, parent, raw, isStatic, isRootInsert, isComment, isCloned, isOnce, asyncFactory, asyncMeta, isAsyncPlaceholder
